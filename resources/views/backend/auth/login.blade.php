@@ -25,13 +25,34 @@
         <![endif]-->
     </head>
     <body class="hold-transition login-page">
+        <header class="main-header">
+            <!-- Logo -->
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown"> 
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle lang" href="#">
+                                <img src="{{url('images/'.App::getLocale().'.gif')}}"> 
+                                <span class="caret"></span>
+                            </a>
+                            <ul role="menu" class="dropdown-menu ">
+                                <li><a class="switch_lang" href="#" id="en"><img src="{{url('images/en.gif')}}"/> English</a></li>
+                                <li><a class="switch_lang" href="#" id="fr"><img src="{{url('images/fr.gif')}}"/> français</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
         <div class="login-box">
             <div class="login-logo">
                 <a href="../../index2.html"><b>Admin</b>LTE</a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">{{trans('language.sign_in_session')}}</p>
 
                 @if (session('status'))
                 <div class="alert alert-danger">
@@ -50,30 +71,30 @@
                 {!! Form::open(['enctype'=>"multipart/form-data",'class'=>'','url' => url('admin/login')]) !!}
 
                 <div class="form-group has-feedback">
-                    {!!Form::text('email','',['class'=>'form-control','autofocus','placeholder'=>'Email'])!!}
+                    {!!Form::text('email','',['class'=>'form-control','autofocus','placeholder'=>trans('language.email')])!!}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    {!!Form::password('password',['class'=>'form-control','placeholder'=>'Password'])!!}
+                    {!!Form::password('password',['class'=>'form-control','placeholder'=>trans('language.password')])!!}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label>
-                                {!!Form::checkbox('remember')!!} Remember Me
+                                {!!Form::checkbox('remember')!!} {{trans('language.remember_me')}}
                             </label>
                         </div>
                     </div>
                     <!-- /.col -->
                     <div class="col-xs-4">
-                        {!!Form::submit('Login',['class'=>'btn btn-primary btn-block btn-flat'])!!}
+                        {!!Form::submit(trans('language.login'),['class'=>'btn btn-primary btn-block btn-flat'])!!}
                     </div>
                     <!-- /.col -->
                 </div>
                 {!! Form::close() !!}
                 <!-- /.social-auth-links -->
-                <a href="{{ url('admin/password/reset') }}">Forgot Your Password?</a><br>
+                <a href="{{ url('admin/password/reset') }}">{{trans('language.forgot_password')}}</a><br>
             </div>
             <!-- /.login-box-body -->
         </div>
@@ -92,6 +113,35 @@ $(function() {
         radioClass: 'iradio_square-blue',
         increaseArea: '20%' // optional
     });
+});
+$(function() {
+    $('.switch_lang').click(function(e) {
+        e.preventDefault();
+        var id = $(this).attr('id');
+
+        var token = '{!!csrf_token()!!}';
+
+        $.ajax(
+                {
+                    url: "{!!url('set-language')!!}",
+                    type: 'POST',
+                    dataType: "JSON",
+                    data: {
+                        "id": id,
+                        "_method": 'POST',
+                        "_token": token
+                    },
+                    error: function()
+                    {
+                        alert('something goes wrong');
+                    },
+                    success: function(res)
+                    {
+                        location.reload();
+                    }
+                });
+    });
+
 });
         </script>
     </body>

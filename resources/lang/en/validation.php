@@ -108,6 +108,8 @@
           | of "email". This simply helps us make messages a little cleaner.
           |
          */
-        'attributes' => [],
+        'attributes' => [
+            'automanufacturer_title' => 'Automanufacturer Title',
+        ],
     ];
     

@@ -1,6 +1,6 @@
 @if(count($errors) > 0)
 <div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+    {{trans('language.whoops_error')}}<br/><br/>
     <ul>
         @foreach ($errors->all() as $eachError)
         <li>{{ $eachError }}</li>
@@ -12,14 +12,14 @@
 {{-- For Sessions --}}
 @if(\Session::has('success'))
 <div class="alert alert-success">
-    <strong>Success!</strong><br><br>
+    <strong>{{trans('language.success')}}!</strong><br><br>
     {{ \Session::get('success') }}
 </div>
 @endif
 {{-- this conflicts with validation errors so we need to check --}}
 @if(\Session::has('error'))
 <div class="alert alert-danger">
-    <strong>Whoops!</strong> There were some problems with your input<br><br>
+    {{trans('language.whoops_error')}}<br><br>
     {{ \Session::get('error') }}
 </div>
 @endif

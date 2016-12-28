@@ -24,6 +24,17 @@
                         {{ csrf_field() }}
                     </form>
                 </li>
+
+                <li class="dropdown"> 
+                    <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle lang" href="#">
+                        <img src="{{url('images/'.App::getLocale().'.gif')}}"> 
+                        <span class="caret"></span>
+                    </a>
+                    <ul role="menu" class="dropdown-menu ">
+                        <li><a class="switch_lang" href="#" id="en"><img src="{{url('images/en.gif')}}"/> English</a></li>
+                        <li><a class="switch_lang" href="#" id="fr"><img src="{{url('images/fr.gif')}}"/> français</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>

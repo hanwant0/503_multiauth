@@ -1,6 +1,4 @@
 @extends('layouts.admin_template')
-
-
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -13,30 +11,15 @@
                     </a>
                 </div>
             </div>
-
             @include('backend.partials.messages')
 
-            {!! Form::open(['enctype'=>"multipart/form-data",'class'=>'form-horizontal','url' => url('admin/automanufacturer')]) !!}
+            <!--            {!! Form::open(['enctype'=>"multipart/form-data",'class'=>'form-horizontal','url' => url('admin/automanufacturer')]) !!}-->
+            {!! Form::open(['enctype'=>"multipart/form-data",'class'=>'form-horizontal','url' => url('admin/automanufacturer/save')]) !!}
 
-            <div class="box-body">
-                {!!Form::token()!!}
-                <div class="form-group">
-                    {!!Form::label('title', 'Title', ['class' => 'col-md-3 control-label'])!!}
-                    <div class="col-md-6">
-                        {!!Form::text('title','',['class'=>'form-control','autofocus'])!!}
-                    </div>
-                </div>
-                <div class="box-footer">
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-3">
-                            {!!Form::submit('Create',['class'=>'btn bg-primary btn-flat'])!!}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('backend.automanufacturer._form',['submit_button' => 'Create'])
+
             {!! Form::close() !!}
         </div>
     </div>
 </div>
-
 @endsection

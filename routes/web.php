@@ -10,9 +10,29 @@
       | to using a Closure or controller method. Build something great!
       |
      */
-    Auth::routes();
+
+    use Illuminate\Http\Request;
+
+Auth::routes();
 
 
+
+    Route::group(['middleware' => ['guest']], function ()
+    {
+
+        Route::get('/', function ()
+        {
+            return view('welcome');
+        });
+
+        Route::get('/home', function ()
+        {
+            return view('frontend.home');
+        });
+    });
+
+
+    Route::post('set-language', 'backend\AdminController@setLanguage');
     Route::group(['middleware' => ['ifadmin']], function ()
     {
         Route::get('admin/login', 'backend\Auth\LoginController@getLoginForm');
@@ -32,8 +52,17 @@
         Route::get('admin/dashboard', 'backend\AdminController@dashboard');
         Route::post('admin/logout', 'backend\Auth\LoginController@getLogout');
 
+
+        Route::post('admin/automanufacturer/save/{automanufacturer?}', 'backend\AutomanufacturerController@save');
+        Route::get('admin/automanufacturer/add/{automanufacturer?}', 'backend\AutomanufacturerController@add');
+
         Route::resource('admin/automanufacturer', 'backend\AutomanufacturerController');
         Route::get('automanufacturer-data', ['as' => 'AutomanufacturerControllerData', 'uses' => 'backend\AutomanufacturerController@anyData']);
+
+
+        Route::post('admin/auto/save/{auto?}', 'backend\AutoController@save');
+        Route::get('admin/auto/add/{automanufacturer?}', 'backend\AutoController@add');
+
 
         Route::resource('admin/auto', 'backend\AutoController');
         Route::get('auto-data', ['as' => 'AutoControllerData', 'uses' => 'backend\AutoController@anyData']);
@@ -67,19 +96,7 @@
         });
     });
 
-    Route::group(['middleware' => ['guest']], function ()
-    {
 
-        Route::get('/', function ()
-        {
-            return view('welcome');
-        });
-
-        Route::get('/home', function ()
-        {
-            return view('frontend.home');
-        });
-    });
 
 
 

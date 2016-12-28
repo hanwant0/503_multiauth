@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Database\Migrations\Migration;
 
-    class CreateTagsTable extends Migration
+    class CreatePasswordResetsTable extends Migration
     {
 
         /**
@@ -14,13 +14,11 @@
          */
         public function up()
         {
-            Schema::create('tags', function (Blueprint $table)
+            Schema::create('password_resets', function (Blueprint $table)
             {
-                $table->engine = 'InnoDB';
-                $table->increments('tag_id');
-                $table->string('tag_title', 100)->unique();
-                $table->string('tag_slug', 200)->index();
-                $table->timestamps();
+                $table->string('email')->index();
+                $table->string('token')->index();
+                $table->timestamp('created_at')->nullable();
             });
         }
 
@@ -31,7 +29,7 @@
          */
         public function down()
         {
-            Schema::dropIfExists('tags');
+            Schema::drop('password_resets');
         }
 
     }

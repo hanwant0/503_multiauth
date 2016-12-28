@@ -81,6 +81,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="{{ asset ("/bower_components/AdminLTE/dist/js/app.min.js") }}" type="text/javascript"></script>
         <!-- App scripts -->
+        <script>
+            $(function() {
+                $('.switch_lang').click(function(e) {
+                    e.preventDefault();
+                    var id = $(this).attr('id');
+
+                    var token = '{!!csrf_token()!!}';
+
+                    $.ajax(
+                            {
+                                url: "{!!url('set-language')!!}",
+                                type: 'POST',
+                                dataType: "JSON",
+                                data: {
+                                    "id": id,
+                                    "_method": 'POST',
+                                    "_token": token
+                                },
+                                error: function()
+                                {
+                                    alert('something goes wrong');
+                                },
+                                success: function(res)
+                                {
+                                    location.reload();
+                                }
+                            });
+                });
+
+            });
+        </script>    
         @stack('scripts')
     </body>
 </html>

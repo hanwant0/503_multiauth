@@ -7,21 +7,21 @@
             <li class="@if (Request::is('admin/dashboard')) active @endif">
                 <a href="{{url('admin/dashboard')}}">
                     <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+                    <span>{{trans('language.dashboard')}}</span>
                 </a>
             </li>
-            <li class="treeview @if (Request::is('admin/automanufacturer') || Request::is('admin/automanufacturer/create')) active @endif">
-                <a href="#"><i class='fa fa-automobile'></i> <span>Automanufacturer</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <li class="treeview @if (Request::is('admin/automanufacturer') || Request::is('admin/automanufacturer/add')) active @endif">
+                <a href="#"><i class='fa fa-automobile'></i> <span>{{trans('language.automanufacturer')}}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li @if (Request::is('admin/automanufacturer')) class="active" @endif><a href="{{url('admin/automanufacturer')}}"><i class="fa fa-list"></i> List Automanufacturer</a></li>
-                    <li @if (Request::is('admin/automanufacturer/create')) class="active" @endif><a href="{{url('admin/automanufacturer/create')}}"><i class="fa fa-plus-circle"></i> Create Automanufacturer</a></li>
+                    <li @if (Request::is('admin/automanufacturer')) class="active" @endif><a href="{{url('admin/automanufacturer')}}"><i class="fa fa-list"></i> {{trans('language.list')}}</a></li>
+                    <li @if (Request::is('admin/automanufacturer/add')) class="active" @endif><a href="{{url('admin/automanufacturer/add')}}"><i class="fa fa-plus-circle"></i> {{trans('language.add')}}</a></li>
                 </ul>
             </li>
-            <li class="treeview @if (Request::is('admin/auto') || Request::is('admin/auto/create')) active @endif">
+            <li class="treeview @if (Request::is('admin/auto') || Request::is('admin/auto/add')) active @endif">
                 <a href="#"><i class='fa fa-automobile'></i> <span>Auto</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li @if (Request::is('admin/auto')) class="active" @endif><a href="{{url('admin/auto')}}"><i class="fa fa-list"></i> List Auto</a></li>
-                    <li @if (Request::is('admin/auto/create')) class="active" @endif><a href="{{url('admin/auto/create')}}"><i class="fa fa-plus-circle"></i> Create Auto</a></li>
+                    <li @if (Request::is('admin/auto/add')) class="active" @endif><a href="{{url('admin/auto/add')}}"><i class="fa fa-plus-circle"></i> Add Auto</a></li>
                 </ul>
             </li>
             <li class="">

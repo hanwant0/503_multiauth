@@ -1,5 +1,4 @@
 @extends('layouts.admin_template')
-
 @push('styles')
 <link href="{{ asset("/bower_components/dropify/dist/css/dropify.css")}}" rel="stylesheet" type="text/css" />
 <link href="{{ asset("/bower_components/AdminLTE/plugins/bootstrap-tags-input/bootstrap-tagsinput.css")}}" rel="stylesheet" type="text/css" />
@@ -9,7 +8,6 @@
     }
 </style>
 @endpush
-
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -22,17 +20,16 @@
                     </a>
                 </div>
             </div>
-
             @include('backend.partials.messages')
-            {!! Form::open(['enctype'=>"multipart/form-data",'method' => 'put','class'=>'form-horizontal','url' => url('admin/auto/'.$auto->auto_id)]) !!}
-            @include('backend.auto._form',['submit_button' => 'Update'])
+            {!! Form::open(['files'=>TRUE,'class'=>'form-horizontal','url' => $save_url]) !!}
+            @include('backend.auto._form',['submit_button' => $submit_button])
             {!! Form::close() !!}
         </div>
     </div>
 </div>
 @endsection
 @push('scripts')
-<script src="{{ asset ("/bower_components/dropify/dist/js/dropify.js") }}" type="text/javascript"></script>
+<script src="{{ asset ("/bower_components/dropify/dist/js/dropify.js") }}"></script>
 <script src="{{ asset("/bower_components/AdminLTE/plugins/bootstrap-tags-input/bootstrap-tagsinput.js")}}" /></script>
 <script>
 $(function() {

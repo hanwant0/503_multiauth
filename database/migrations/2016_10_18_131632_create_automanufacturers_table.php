@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Database\Migrations\Migration;
 
-    class CreateTagsTable extends Migration
+    class CreateAutomanufacturersTable extends Migration
     {
 
         /**
@@ -14,12 +14,12 @@
          */
         public function up()
         {
-            Schema::create('tags', function (Blueprint $table)
+            Schema::create('automanufacturers', function (Blueprint $table)
             {
                 $table->engine = 'InnoDB';
-                $table->increments('tag_id');
-                $table->string('tag_title', 100)->unique();
-                $table->string('tag_slug', 200)->index();
+                $table->increments('automanufacturer_id');
+                $table->string('automanufacturer_title', 50)->unique();
+                $table->string('automanufacturer_slug', 100)->index();
                 $table->timestamps();
             });
         }
@@ -31,7 +31,7 @@
          */
         public function down()
         {
-            Schema::dropIfExists('tags');
+            Schema::dropIfExists('automanufacturers');
         }
 
     }

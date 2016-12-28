@@ -1,0 +1,35 @@
+<?php
+
+    return [
+        'dashboard' => 'Tableau de bord',
+        'automanufacturer' => 'Constructeur automobile',
+        'whoops_error' => 'Oups! Il y a eu quelques problèmes avec vos commentaires.',
+        'success' => 'le succès',
+        'id' => 'Id',
+        'title' => 'Titre',
+        'created_at' => 'Créé à',
+        'updated_at' => 'Mise à jour à',
+        'action' => 'Action',
+        'add' => 'Ajouter',
+        'list' => 'Liste',
+        'edit' => 'Modifier',
+        'delete' => 'Effacer',
+        'save' => 'Sauvegarder',
+        'update' => 'Mettre à jour',
+        'back' => 'Arrière',
+        'save_msg' => ':Name sauvegarde réussie!',
+        'update_msg' => ':Name Mis à jour avec succés!',
+        'delete_msg' => ':Name Supprimé avec succès!',
+        'note_found_msg' => ':Name pas trouvé!',
+        'are_you_sure_delete' => 'Voulez-vous vraiment supprimer?',
+        'yes' => 'Oui',
+        'no' => 'non',
+        'something_goes_wrong' => 'Quelque chose ne va pas !',
+        'sign_in_session' => 'Connectez-vous pour démarrer votre session',
+        'email' => 'Email',
+        'password' => 'Mot de passe',
+        'remember_me' => 'Souviens-toi de moi',
+        'forgot_password' => 'Mot de passe oublié?',
+        'login' => 'S\'identifier'
+    ];
+    

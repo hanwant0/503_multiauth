@@ -12,8 +12,8 @@
             <div class="box-header with-border">
                 <div class="pull-left"><h3 class="box-title"><strong>{{ $page_title}}</strong></h3></div>
                 <div class="pull-right">
-                    <a class="btn btn-primary btn-sm btn-flat" href="{{url('admin/auto/create')}}">
-                        <i class="fa fa-plus"> Create</i>
+                    <a class="btn btn-primary btn-sm btn-flat" href="{{url('admin/auto/add')}}">
+                        <i class="fa fa-plus"> Add</i>
                     </a>
                 </div>
             </div>
@@ -57,7 +57,7 @@ $(function() {
         columns: [
             {data: 'auto_id', name: 'autos.auto_id'},
             {data: 'auto_model', name: 'autos.auto_model'},
-            {data: 'automanufacturer.title', name: 'automanufacturer.title'},
+            {data: 'automanufacturer.automanufacturer_title', name: 'automanufacturer.title'},
             {data: 'auto_model_year', name: 'autos.auto_model_year'},
             {data: 'auto_asking_price', name: 'autos.auto_asking_price'},
             {data: 'auto_mileage', name: 'autos.auto_mileage'},

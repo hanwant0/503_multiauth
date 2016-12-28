@@ -1,20 +1,23 @@
 <?php
 
-namespace Illuminate\Support\Facades;
+    namespace Illuminate\Support\Facades;
 
-/**
- * @see \Illuminate\Database\DatabaseManager
- * @see \Illuminate\Database\Connection
- */
-class DB extends Facade
-{
     /**
-     * Get the registered name of the component.
-     *
-     * @return string
+     * @see \Illuminate\Database\DatabaseManager
+     * @see \Illuminate\Database\Connection
      */
-    protected static function getFacadeAccessor()
+    class DB extends Facade
     {
-        return 'db';
+
+        /**
+         * Get the registered name of the component.
+         *
+         * @return string
+         */
+        protected static function getFacadeAccessor()
+        {
+            return 'db';
+        }
+
     }
-}
+    

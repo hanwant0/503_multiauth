@@ -7,6 +7,7 @@
     use App\Http\Controllers\Controller;
     use Illuminate\Support\Facades\Input;
     use Illuminate\Support\Facades\Session;
+    use Illuminate\Support\Facades\Lang;
 
     class AdminController extends Controller
     {
@@ -35,6 +36,13 @@
         {
             $data['page_title'] = 'Dashboard';
             return view('backend.dashboard')->with($data);
+        }
+
+        public function setLanguage(Request $request)
+        {
+            $locale = $request->id;
+            Session::put('locale', $locale);
+            echo json_encode(TRUE);
         }
 
     }
