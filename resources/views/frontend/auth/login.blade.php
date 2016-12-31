@@ -4,6 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="form-group col-md-8 col-md-offset-2">
+            @if(session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+            @endif
             @if (session('status'))
             <div class="alert alert-success">
                 {{ session('status') }}

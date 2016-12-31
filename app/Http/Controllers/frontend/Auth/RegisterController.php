@@ -9,9 +9,15 @@
     use Illuminate\Foundation\Auth\RegistersUsers;
     use Illuminate\Support\Facades\Input;
     use Illuminate\Support\Facades\Session;
-
+    use Illuminate\Support\Facades\DB;
+    use App\Model\frontend\ActivationService;
+    use App\Traits\ActivationKeyTrait;
+    
     class RegisterController extends Controller
     {
+
+        protected $activationService;
+
         /*
           |--------------------------------------------------------------------------
           | Register Controller
@@ -23,7 +29,8 @@
           |
          */
 
-use RegistersUsers;
+use RegistersUsers,
+    ActivationKeyTrait;
 
         /**
          * Where to redirect users after login / registration.
@@ -37,9 +44,10 @@ use RegistersUsers;
          *
          * @return void
          */
-        public function __construct()
+        public function __construct(ActivationService $activationService)
         {
             $this->middleware('guest');
+            $this->activationService = $activationService;
         }
 
         public function getRegisterForm()
@@ -81,7 +89,9 @@ use RegistersUsers;
 
             if ($user->id)
             {
-                return redirect('user/login')->with('status', 'User register successfully');
+                // $this->activationService->sendActivationMail($user);
+                $this->queueActivationKeyNotification($user);
+                return redirect('user/login')->with('status', 'We sent you an activation code. Check your email.');
             }
             else
             {

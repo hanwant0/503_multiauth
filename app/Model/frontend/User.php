@@ -3,6 +3,7 @@
     namespace App\Model\frontend;
 
     use App\Notifications\UserResetPassword;
+    use App\Notifications\UserActivationCode;
     use Illuminate\Notifications\Notifiable;
     use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -38,9 +39,19 @@
             ]);
         }
 
+        public function routeNotificationForMail()
+        {
+            return $this->email;
+        }
+
         public function sendPasswordResetNotification($token)
         {
             $this->notify(new UserResetPassword($token));
+        }
+
+        public function sendUserActivationCode($token)
+        {
+            $this->notify(new UserActivationCode($token));
         }
 
     }

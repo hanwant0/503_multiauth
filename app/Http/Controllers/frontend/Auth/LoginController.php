@@ -7,6 +7,7 @@
     use App\Http\Controllers\Controller;
     use Illuminate\Foundation\Auth\AuthenticatesUsers;
     use Illuminate\Support\Facades\Auth;
+    use App\Model\frontend\ActivationService;
 
     class LoginController extends Controller
     {
@@ -28,6 +29,7 @@ use AuthenticatesUsers;
          *
          * @var string
          */
+        protected $activationService;
         protected $redirectTo = 'user/dashboard';
 
         /**
@@ -35,9 +37,10 @@ use AuthenticatesUsers;
          *
          * @return void
          */
-        public function __construct()
+        public function __construct(ActivationService $activationService)
         {
             $this->middleware('guest', ['except' => 'logout']);
+            $this->activationService = $activationService;
         }
 
         public function getLoginForm()
@@ -71,6 +74,17 @@ use AuthenticatesUsers;
         protected function guard()
         {
             return Auth::guard('user');
+        }
+
+        public function authenticated(Request $request, $user)
+        {
+            if (!$user->activated)
+            {
+                $this->activationService->sendActivationMail($user);
+                auth()->guard('user')->logout();
+                return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+            }
+            return redirect()->intended($this->redirectPath());
         }
 
     }

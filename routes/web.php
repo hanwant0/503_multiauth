@@ -77,6 +77,9 @@ Auth::routes();
         Route::get('user/register', 'frontend\Auth\RegisterController@getRegisterForm');
         Route::post('user/saveregister', 'frontend\Auth\RegisterController@saveRegisterForm');
 
+        Route::get('user/activation/{token}', 'frontend\UserController@userActivation');
+
+
         Route::post('user/password/email', 'frontend\Auth\ForgotPasswordController@sendResetLinkEmail');
         Route::post('user/password/reset', 'frontend\Auth\ResetPasswordController@reset');
         Route::get('user/password/reset', 'frontend\Auth\ForgotPasswordController@showLinkRequestForm');
@@ -91,7 +94,6 @@ Auth::routes();
 
         Route::get('user/dashboard1/', function ()
         {
-
             return view('frontend.dashboard');
         });
     });
