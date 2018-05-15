@@ -31,5 +31,7 @@ class HomeController extends Controller {
     public function test2() {
         
     }
-
+    public function test3(){
+        
+    }
 }
